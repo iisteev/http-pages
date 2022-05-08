@@ -1,6 +1,6 @@
 {
   "name": "http-pages",
-  "version": "0.2.0-rc",
+  "version": "0.2.0",
   "description": "A very basic http code pages generator",
   "repository": "https://github.com/iisteev/http-pages.git",
   "author": "iisteev",
