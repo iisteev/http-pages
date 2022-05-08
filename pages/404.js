@@ -1,3 +1,6 @@
+import Image from "next/image";
+import emoji from "../assets/emoji.png";
+
 export default function NotFoundError() {
   return (
     <>
@@ -6,9 +9,11 @@ export default function NotFoundError() {
           <div className="max-w-md flex flex-col items-center">
             <div className="text-8xl font-dark font-medium font-bold">404</div>
             <p className="text-2xl md:text-3xl font-light leading-normal">
-              Sorry we couldn't find this page.
+              Sorry we couldn&apos;t find this page.
             </p>
-            <img src="/emoji.png" className="w-52 h-52 mr-4" />
+            <div className="w-56 h-56 mr-4">
+              <Image src={emoji} alt="emoji" layout="intrinsic" />
+            </div>
           </div>
         </div>
       </div>
