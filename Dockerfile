@@ -1,20 +1,27 @@
-FROM node:14.15-alpine
+FROM node:16.15-alpine as build
 
 WORKDIR /usr/app
 
-# Optimize docker build for caching
+COPY ./ ./
+
+RUN npm install && \
+    npm run build
+
+FROM node:16.15-alpine
+
+ENV NODE_ENV=production
+
+WORKDIR /usr/app
+
+COPY --from=build /usr/app/.next /usr/app/.next
 COPY ./package*.json ./
 
 RUN npm install --global pm2 && \
-    npm install --production
-
-COPY ./ ./
-
-RUN npm run build
+    npm install && \
+    chown -R node:node /usr/app
 
 EXPOSE 3000
 
 USER node
 
-# Launch app with PM2
 CMD [ "pm2-runtime", "start", "npm", "--", "start" ]
